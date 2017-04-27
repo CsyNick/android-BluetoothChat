@@ -21,12 +21,14 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,7 +44,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.common.logger.Log;
 
 /**
  * This fragment controls Bluetooth to communicate with other devices.
@@ -306,6 +307,9 @@ public class BluetoothChatFragment extends Fragment {
                     // construct a string from the valid bytes in the buffer
                     String readMessage = new String(readBuf, 0, msg.arg1);
                     mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                    if(readMessage.contains("go")) {
+                        watch_video("https://www.youtube.com/watch?v=1gDZTah8J2A");
+                    }
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
@@ -325,6 +329,15 @@ public class BluetoothChatFragment extends Fragment {
         }
     };
 
+    void watch_video(String url)
+    {
+        Intent yt_play = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+
+        if (yt_play .resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(yt_play);
+        }
+    }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_CONNECT_DEVICE_SECURE:
