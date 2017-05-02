@@ -1,29 +1,17 @@
-/*
- * Copyright (C) 2014 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.android.bluetoothchat;
 
+import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.IOException;
@@ -32,14 +20,12 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 /**
- * This class does all the work for setting up and managing Bluetooth
- * connections with other devices. It has a thread that listens for
- * incoming connections, a thread for connecting with a device, and a
- * thread for performing data transmissions when connected.
+ * Created by NickChung on 2017/4/28.
  */
-public class BluetoothChatService {
+
+public class BluetoothBackgroundService extends Service {
     // Debugging
-    private static final String TAG = "BluetoothChatService";
+    private static final String TAG = "BluetoothBackground";
 
     // Name for the SDP record when creating server socket
     private static final String NAME_SECURE = "BluetoothChatSecure";
@@ -54,10 +40,10 @@ public class BluetoothChatService {
     // Member fields
     private final BluetoothAdapter mAdapter;
     private final Handler mHandler;
-    private AcceptThread mSecureAcceptThread;
-    private AcceptThread mInsecureAcceptThread;
-    private ConnectThread mConnectThread;
-    private ConnectedThread mConnectedThread;
+    private BluetoothBackgroundService.AcceptThread mSecureAcceptThread;
+    private BluetoothBackgroundService.AcceptThread mInsecureAcceptThread;
+    private BluetoothBackgroundService.ConnectThread mConnectThread;
+    private BluetoothBackgroundService.ConnectedThread mConnectedThread;
     private int mState;
     private int mNewState;
 
@@ -67,14 +53,17 @@ public class BluetoothChatService {
     public static final int STATE_CONNECTING = 2; // now initiating an outgoing connection
     public static final int STATE_CONNECTED = 3;  // now connected to a remote device
 
-
+    public  BluetoothBackgroundService() {
+        mAdapter = null;
+        mHandler = null;
+    }
     /**
      * Constructor. Prepares a new BluetoothChat session.
      *
      * @param context The UI Activity Context
      * @param handler A Handler to send messages back to the UI Activity
      */
-    public BluetoothChatService(Context context, Handler handler) {
+    public BluetoothBackgroundService(Context context, Handler handler) {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mState = STATE_NONE;
         mNewState = mState;
@@ -121,11 +110,11 @@ public class BluetoothChatService {
 
         // Start the thread to listen on a BluetoothServerSocket
         if (mSecureAcceptThread == null) {
-            mSecureAcceptThread = new AcceptThread(true);
+            mSecureAcceptThread = new BluetoothBackgroundService.AcceptThread(true);
             mSecureAcceptThread.start();
         }
         if (mInsecureAcceptThread == null) {
-            mInsecureAcceptThread = new AcceptThread(false);
+            mInsecureAcceptThread = new BluetoothBackgroundService.AcceptThread(false);
             mInsecureAcceptThread.start();
         }
         // Update UI title
@@ -156,7 +145,7 @@ public class BluetoothChatService {
         }
 
         // Start the thread to connect with the given device
-        mConnectThread = new ConnectThread(device, secure);
+        mConnectThread = new BluetoothBackgroundService.ConnectThread(device, secure);
         mConnectThread.start();
         // Update UI title
         updateUserInterfaceTitle();
@@ -195,7 +184,7 @@ public class BluetoothChatService {
         }
 
         // Start the thread to manage the connection and perform transmissions
-        mConnectedThread = new ConnectedThread(socket, socketType);
+        mConnectedThread = new BluetoothBackgroundService.ConnectedThread(socket, socketType);
         mConnectedThread.start();
 
         // Send the name of the connected device back to the UI Activity
@@ -242,11 +231,11 @@ public class BluetoothChatService {
      * Write to the ConnectedThread in an unsynchronized manner
      *
      * @param out The bytes to write
-     * @see ConnectedThread#write(byte[])
+     * @see BluetoothChatService.ConnectedThread#write(byte[])
      */
     public void write(byte[] out) {
         // Create temporary object
-        ConnectedThread r;
+        BluetoothBackgroundService.ConnectedThread r;
         // Synchronize a copy of the ConnectedThread
         synchronized (this) {
             if (mState != STATE_CONNECTED) return;
@@ -272,7 +261,7 @@ public class BluetoothChatService {
         updateUserInterfaceTitle();
 
         // Start the service over to restart listening mode
-        BluetoothChatService.this.start();
+        BluetoothBackgroundService.this.start();
     }
 
     /**
@@ -291,7 +280,7 @@ public class BluetoothChatService {
         updateUserInterfaceTitle();
 
         // Start the service over to restart listening mode
-        BluetoothChatService.this.start();
+        BluetoothBackgroundService.this.start();
     }
 
     /**
@@ -344,7 +333,7 @@ public class BluetoothChatService {
 
                 // If a connection was accepted
                 if (socket != null) {
-                    synchronized (BluetoothChatService.this) {
+                    synchronized (BluetoothBackgroundService.this) {
                         switch (mState) {
                             case STATE_LISTEN:
                             case STATE_CONNECTING:
@@ -437,7 +426,7 @@ public class BluetoothChatService {
             }
 
             // Reset the ConnectThread because we're done
-            synchronized (BluetoothChatService.this) {
+            synchronized (BluetoothBackgroundService.this) {
                 mConnectThread = null;
             }
 
@@ -495,9 +484,9 @@ public class BluetoothChatService {
                     bytes = mmInStream.read(buffer);
 
                     // Send the obtained bytes to the UI Activity
-                   // mHandler.obtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer).sendToTarget();
-                   // mHandler.obtainMessage(Constants.LUANCH_YOUTUBE, bytes, -1, buffer).sendToTarget();
-                    mHandler.obtainMessage(Constants.LUANCH_YOUTUBE).sendToTarget();
+                    mHandler.obtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer)
+                            .sendToTarget();
+
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
@@ -530,5 +519,16 @@ public class BluetoothChatService {
                 Log.e(TAG, "close() of connect socket failed", e);
             }
         }
+    }
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent,int flags, int startId) {
+
+        return START_STICKY;
     }
 }

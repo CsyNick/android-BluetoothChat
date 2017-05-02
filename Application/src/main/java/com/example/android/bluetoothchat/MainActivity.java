@@ -20,9 +20,6 @@ package com.example.android.bluetoothchat;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ViewAnimator;
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom

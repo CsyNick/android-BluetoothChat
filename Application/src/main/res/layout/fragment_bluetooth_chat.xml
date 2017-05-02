@@ -40,10 +40,19 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/btnLaunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Youtube"/>
+        <Button
             android:id="@+id/button_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/send" />
+
+
+
     </LinearLayout>
 
 </LinearLayout>

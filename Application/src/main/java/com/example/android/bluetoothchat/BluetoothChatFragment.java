@@ -61,7 +61,7 @@ public class BluetoothChatFragment extends Fragment {
     private ListView mConversationView;
     private EditText mOutEditText;
     private Button mSendButton;
-
+    private Button btnOpenYoutube;
     /**
      * Name of the connected device
      */
@@ -87,6 +87,8 @@ public class BluetoothChatFragment extends Fragment {
      */
     private BluetoothChatService mChatService = null;
 
+    private BluetoothBackgroundService mBluetoothBackgroundService = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +102,7 @@ public class BluetoothChatFragment extends Fragment {
             Toast.makeText(activity, "Bluetooth is not available", Toast.LENGTH_LONG).show();
             activity.finish();
         }
+
     }
 
 
@@ -152,6 +155,7 @@ public class BluetoothChatFragment extends Fragment {
         mConversationView = (ListView) view.findViewById(R.id.in);
         mOutEditText = (EditText) view.findViewById(R.id.edit_text_out);
         mSendButton = (Button) view.findViewById(R.id.button_send);
+        btnOpenYoutube = (Button) view.findViewById(R.id.btnLaunch);
     }
 
     /**
@@ -184,8 +188,16 @@ public class BluetoothChatFragment extends Fragment {
         // Initialize the BluetoothChatService to perform bluetooth connections
         mChatService = new BluetoothChatService(getActivity(), mHandler);
 
+        mBluetoothBackgroundService = new BluetoothBackgroundService(getActivity(), mHandler);
         // Initialize the buffer for outgoing messages
         mOutStringBuffer = new StringBuffer("");
+
+        btnOpenYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMessage("123");
+            }
+        });
     }
 
     /**
@@ -307,9 +319,10 @@ public class BluetoothChatFragment extends Fragment {
                     // construct a string from the valid bytes in the buffer
                     String readMessage = new String(readBuf, 0, msg.arg1);
                     mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
-                    if(readMessage.contains("go")) {
+
+                    break;
+                case Constants.LUANCH_YOUTUBE:
                         watch_video("https://www.youtube.com/watch?v=1gDZTah8J2A");
-                    }
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name

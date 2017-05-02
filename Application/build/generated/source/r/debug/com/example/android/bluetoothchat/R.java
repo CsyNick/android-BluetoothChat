@@ -2086,7 +2086,7 @@ containing a value of this type.
         public static final int always=0x7f0a002e;
         public static final int beginning=0x7f0a002c;
         public static final int bottom=0x7f0a001e;
-        public static final int btnLaunch=0x7f0a006a;
+        public static final int btnLaunch=0x7f0a006e;
         public static final int buttonPanel=0x7f0a003d;
         public static final int button_scan=0x7f0a0067;
         public static final int button_send=0x7f0a006f;
@@ -2107,7 +2107,7 @@ containing a value of this type.
         public static final int disableHome=0x7f0a000c;
         public static final int discoverable=0x7f0a0089;
         public static final int edit_query=0x7f0a0056;
-        public static final int edit_text_out=0x7f0a006e;
+        public static final int edit_text_out=0x7f0a006d;
         public static final int end=0x7f0a0024;
         public static final int end_padder=0x7f0a0086;
         public static final int expand_activities_button=0x7f0a0037;
@@ -2122,7 +2122,7 @@ containing a value of this type.
         public static final int icon_group=0x7f0a0081;
         public static final int ifRoom=0x7f0a0030;
         public static final int image=0x7f0a0038;
-        public static final int in=0x7f0a006d;
+        public static final int in=0x7f0a006c;
         public static final int info=0x7f0a007d;
         public static final int insecure_connect_scan=0x7f0a0088;
         public static final int left=0x7f0a0028;
@@ -2130,7 +2130,7 @@ containing a value of this type.
         public static final int line3=0x7f0a0084;
         public static final int listMode=0x7f0a0009;
         public static final int list_item=0x7f0a003a;
-        public static final int log_fragment=0x7f0a006c;
+        public static final int log_fragment=0x7f0a006b;
         public static final int media_actions=0x7f0a0076;
         public static final int menu_toggle_log=0x7f0a008a;
         public static final int middle=0x7f0a002d;
@@ -2150,7 +2150,7 @@ containing a value of this type.
         public static final int right=0x7f0a0029;
         public static final int right_icon=0x7f0a007e;
         public static final int right_side=0x7f0a007a;
-        public static final int sample_content_fragment=0x7f0a006b;
+        public static final int sample_content_fragment=0x7f0a006a;
         public static final int sample_main_layout=0x7f0a0068;
         public static final int sample_output=0x7f0a0069;
         public static final int screen=0x7f0a0015;
