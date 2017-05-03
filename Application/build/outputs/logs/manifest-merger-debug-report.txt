@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:18:1-55:12
+ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:18:1-53:12
 	package
 		ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:19:5-48
 	android:versionName
@@ -22,18 +22,18 @@ ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidMa
 	android:name
 		ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:27:22-65
 application
-ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:29:5-53:19
+ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:29:5-51:19
 MERGED from [com.android.support:gridlayout-v7:25.0.1] /Users/NickChung/.android/build-cache/99eb72db97a5faf032362ec50ae2c86b5d643692/output/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:cardview-v7:25.0.1] /Users/NickChung/.android/build-cache/26f2c83105c26e627059a6c2a9358f7dfdabfd66/output/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:25.0.1] /Users/NickChung/.android/build-cache/1d9155c69aae8d05ace0e77cbb0ea8b1633621ab/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:25.0.1] /Users/NickChung/.android/build-cache/19b2b758c309927a6e7cd03c2772ac9d27878a40/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:25.0.1] /Users/NickChung/.android/build-cache/d234ae1c1d0cb45f315586f53d023ca10b3b44e9/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:25.0.1] /Users/NickChung/.android/build-cache/8411cafb14b44089488b1fa8a97e7d477d773559/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-ui:25.0.1] /Users/NickChung/.android/build-cache/c76039877fec5200c183314a077464ea7dcc0bbb/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:25.0.1] /Users/NickChung/.android/build-cache/a82054f375878b6616c3c026c106d1781f2585e7/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /Users/NickChung/.android/build-cache/2e107facde08c83bb1d79b91eef81ca05eac84e0/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/NickChung/.android/build-cache/aafe7e539725f16e21267eb2d37f6de0133b4bcd/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/NickChung/.android/build-cache/b5c202da832af907fbfef9bfa58029d0ca479aa5/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/NickChung/.android/build-cache/ca150b32056eb10faae6e99e00d4d4870fa84b95/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/NickChung/.android/build-cache/9b5a7fd111cf9c702d78d6419e29cb267d7a7ecb/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.0.1] /Users/NickChung/.android/build-cache/6019e045d216c74e79d0ad4bddcd34e9fbc05630/output/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-vector-drawable:25.0.1] /Users/NickChung/.android/build-cache/9024dbf6e740ee9aca8ee86b290c06bb8c869011/output/AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-compat:25.0.1] /Users/NickChung/.android/build-cache/3cbf7d188c7cdc0f68a3dc14b6c128f1dea19f1d/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /Users/NickChung/.android/build-cache/434cf9448416f7bec2582a629725a21f09ab1b1b/output/AndroidManifest.xml:29:5-20
 	android:label
 		ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:32:9-41
 	android:allowBackup
@@ -70,25 +70,19 @@ ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidMa
 		ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:49:13-61
 	android:name
 		ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:46:13-47
-service#com.example.android.bluetoothchat.BluetoothBackgroundService
-ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:51:9-52:37
-	android:enabled
-		ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:52:13-35
-	android:name
-		ADDED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml:51:18-60
 uses-sdk
 INJECTED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:gridlayout-v7:25.0.1] /Users/NickChung/.android/build-cache/99eb72db97a5faf032362ec50ae2c86b5d643692/output/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:cardview-v7:25.0.1] /Users/NickChung/.android/build-cache/26f2c83105c26e627059a6c2a9358f7dfdabfd66/output/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:25.0.1] /Users/NickChung/.android/build-cache/1d9155c69aae8d05ace0e77cbb0ea8b1633621ab/output/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:support-v4:25.0.1] /Users/NickChung/.android/build-cache/19b2b758c309927a6e7cd03c2772ac9d27878a40/output/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.0.1] /Users/NickChung/.android/build-cache/d234ae1c1d0cb45f315586f53d023ca10b3b44e9/output/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.0.1] /Users/NickChung/.android/build-cache/8411cafb14b44089488b1fa8a97e7d477d773559/output/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.0.1] /Users/NickChung/.android/build-cache/c76039877fec5200c183314a077464ea7dcc0bbb/output/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.0.1] /Users/NickChung/.android/build-cache/a82054f375878b6616c3c026c106d1781f2585e7/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-v4:25.3.1] /Users/NickChung/.android/build-cache/2e107facde08c83bb1d79b91eef81ca05eac84e0/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/NickChung/.android/build-cache/aafe7e539725f16e21267eb2d37f6de0133b4bcd/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/NickChung/.android/build-cache/b5c202da832af907fbfef9bfa58029d0ca479aa5/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/NickChung/.android/build-cache/ca150b32056eb10faae6e99e00d4d4870fa84b95/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/NickChung/.android/build-cache/9b5a7fd111cf9c702d78d6419e29cb267d7a7ecb/output/AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:animated-vector-drawable:25.0.1] /Users/NickChung/.android/build-cache/6019e045d216c74e79d0ad4bddcd34e9fbc05630/output/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:25.0.1] /Users/NickChung/.android/build-cache/9024dbf6e740ee9aca8ee86b290c06bb8c869011/output/AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:support-compat:25.0.1] /Users/NickChung/.android/build-cache/3cbf7d188c7cdc0f68a3dc14b6c128f1dea19f1d/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.3.1] /Users/NickChung/.android/build-cache/434cf9448416f7bec2582a629725a21f09ab1b1b/output/AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:25.0.1] /Users/NickChung/.android/build-cache/1d9155c69aae8d05ace0e77cbb0ea8b1633621ab/output/AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
@@ -97,3 +91,14 @@ MERGED from [com.android.support:support-compat:25.0.1] /Users/NickChung/.androi
 	android:minSdkVersion
 		INJECTED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml
 		INJECTED from /Users/NickChung/android-BluetoothChat/Application/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:25.3.1] /Users/NickChung/.android/build-cache/2e107facde08c83bb1d79b91eef81ca05eac84e0/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/NickChung/.android/build-cache/aafe7e539725f16e21267eb2d37f6de0133b4bcd/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/NickChung/.android/build-cache/b5c202da832af907fbfef9bfa58029d0ca479aa5/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/NickChung/.android/build-cache/ca150b32056eb10faae6e99e00d4d4870fa84b95/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/NickChung/.android/build-cache/9b5a7fd111cf9c702d78d6419e29cb267d7a7ecb/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /Users/NickChung/.android/build-cache/434cf9448416f7bec2582a629725a21f09ab1b1b/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:support-v4:25.3.1] /Users/NickChung/.android/build-cache/2e107facde08c83bb1d79b91eef81ca05eac84e0/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:support-v4:25.3.1] /Users/NickChung/.android/build-cache/2e107facde08c83bb1d79b91eef81ca05eac84e0/output/AndroidManifest.xml:26:9-47
