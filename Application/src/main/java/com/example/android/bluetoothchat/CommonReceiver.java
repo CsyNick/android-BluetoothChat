@@ -20,7 +20,7 @@ String action = intent.getAction();
 
 
 if(action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-    Toast.makeText(coNtext,"Starting Bluetooth Connect Service...",Toast.LENGTH_LONG).show();
+    Toast.makeText(coNtext,"Starting Bluetooth Service...",Toast.LENGTH_LONG).show();
     Intent startIntent = new Intent();
  
     startIntent.setClass(coNtext, TempService.class);
