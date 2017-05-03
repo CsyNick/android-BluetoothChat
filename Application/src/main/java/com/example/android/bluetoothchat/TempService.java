@@ -57,7 +57,7 @@ public class TempService extends Service {
     @Override
     public int onStartCommand(Intent intent,int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-//        startTimer();
+        startTimer();
         Log.d("Nick","onStartCommand!");
         // Initialize the BluetoothChatService to perform bluetooth connections
         mChatService = new BluetoothChatService(getApplicationContext(), mHandler);

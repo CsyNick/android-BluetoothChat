@@ -399,6 +399,8 @@ public class BluetoothChatFragment extends Fragment {
             case R.id.discoverable: {
                 // Ensure this device is discoverable by others
                 //ensureDiscoverable();
+                Toast.makeText(getActivity(),"Launch Service!",
+                        Toast.LENGTH_SHORT).show();
                 startService();
                 return true;
             }
