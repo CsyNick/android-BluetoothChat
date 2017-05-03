@@ -18,8 +18,10 @@ package com.example.android.bluetoothchat;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -85,10 +87,15 @@ public class BluetoothChatFragment extends Fragment {
     /**
      * Member object for the chat services
      */
-    private BluetoothChatService mChatService = null;
+//    private BluetoothChatService mChatService = null;
 
-    private BluetoothBackgroundService mBluetoothBackgroundService = null;
+//    private BluetoothBackgroundService mBluetoothBackgroundService = null;
 
+
+
+    // TempService test
+    private TempService tempService;
+    Intent tempServiceIntent ;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,21 +118,22 @@ public class BluetoothChatFragment extends Fragment {
         super.onStart();
         // If BT is not on, request that it be enabled.
         // setupChat() will then be called during onActivityResult
-        if (!mBluetoothAdapter.isEnabled()) {
-            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-            // Otherwise, setup the chat session
-        } else if (mChatService == null) {
-            setupChat();
-        }
+//        if (!mBluetoothAdapter.isEnabled()) {
+//            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+//            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+//            // Otherwise, setup the chat session
+//        } else if (mChatService == null) {
+//            setupChat();
+//        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mChatService != null) {
-            mChatService.stop();
-        }
+//        if (mChatService != null) {
+//            mChatService.stop();
+//            //getActivity().stopService(tempServiceIntent);
+//        }
     }
 
     @Override
@@ -135,13 +143,13 @@ public class BluetoothChatFragment extends Fragment {
         // Performing this check in onResume() covers the case in which BT was
         // not enabled during onStart(), so we were paused to enable it...
         // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
-        if (mChatService != null) {
-            // Only if the state is STATE_NONE, do we know that we haven't started already
-            if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
-                // Start the Bluetooth chat services
-                mChatService.start();
-            }
-        }
+//        if (mChatService != null) {
+//            // Only if the state is STATE_NONE, do we know that we haven't started already
+//            if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
+//                // Start the Bluetooth chat services
+//                mChatService.start();
+//            }
+//        }
     }
 
     @Override
@@ -186,9 +194,9 @@ public class BluetoothChatFragment extends Fragment {
         });
 
         // Initialize the BluetoothChatService to perform bluetooth connections
-        mChatService = new BluetoothChatService(getActivity(), mHandler);
+//        tempService = new BluetoothChatService(getActivity(), mHandler);
 
-        mBluetoothBackgroundService = new BluetoothBackgroundService(getActivity(), mHandler);
+//        mBluetoothBackgroundService = new BluetoothBackgroundService(getActivity(), mHandler);
         // Initialize the buffer for outgoing messages
         mOutStringBuffer = new StringBuffer("");
 
@@ -200,17 +208,6 @@ public class BluetoothChatFragment extends Fragment {
         });
     }
 
-    /**
-     * Makes this device discoverable for 300 seconds (5 minutes).
-     */
-    private void ensureDiscoverable() {
-        if (mBluetoothAdapter.getScanMode() !=
-                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
-            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-            startActivity(discoverableIntent);
-        }
-    }
 
     /**
      * Sends a message.
@@ -219,7 +216,7 @@ public class BluetoothChatFragment extends Fragment {
      */
     private void sendMessage(String message) {
         // Check that we're actually connected before trying anything
-        if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
+        if (tempService.getmChatService().getState() != BluetoothChatService.STATE_CONNECTED) {
             Toast.makeText(getActivity(), R.string.not_connected, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -228,7 +225,7 @@ public class BluetoothChatFragment extends Fragment {
         if (message.length() > 0) {
             // Get the message bytes and tell the BluetoothChatService to write
             byte[] send = message.getBytes();
-            mChatService.write(send);
+            tempService.getmChatService().write(send);
 
             // Reset out string buffer to zero and clear the edit text field
             mOutStringBuffer.setLength(0);
@@ -322,7 +319,7 @@ public class BluetoothChatFragment extends Fragment {
 
                     break;
                 case Constants.LUANCH_YOUTUBE:
-                        watch_video("https://www.youtube.com/watch?v=1gDZTah8J2A");
+//                        watch_video("https://www.youtube.com/watch?v=1gDZTah8J2A");
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
@@ -342,59 +339,42 @@ public class BluetoothChatFragment extends Fragment {
         }
     };
 
-    void watch_video(String url)
-    {
-        Intent yt_play = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-
-
-        if (yt_play .resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivity(yt_play);
-        }
-    }
+//    void watch_video(String url)
+//    {
+//        Intent yt_play = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//
+//
+//        if (yt_play .resolveActivity(getActivity().getPackageManager()) != null) {
+//            startActivity(yt_play);
+//        }
+//    }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_CONNECT_DEVICE_SECURE:
                 // When DeviceListActivity returns with a device to connect
                 if (resultCode == Activity.RESULT_OK) {
-                    connectDevice(data, true);
+                   tempService.connectDevice(data, true);
                 }
                 break;
-            case REQUEST_CONNECT_DEVICE_INSECURE:
-                // When DeviceListActivity returns with a device to connect
-                if (resultCode == Activity.RESULT_OK) {
-                    connectDevice(data, false);
-                }
-                break;
-            case REQUEST_ENABLE_BT:
-                // When the request to enable Bluetooth returns
-                if (resultCode == Activity.RESULT_OK) {
-                    // Bluetooth is now enabled, so set up a chat session
-                    setupChat();
-                } else {
-                    // User did not enable Bluetooth or an error occurred
-                    Log.d(TAG, "BT not enabled");
-                    Toast.makeText(getActivity(), R.string.bt_not_enabled_leaving,
-                            Toast.LENGTH_SHORT).show();
-                    getActivity().finish();
-                }
+
         }
     }
 
-    /**
-     * Establish connection with other device
-     *
-     * @param data   An {@link Intent} with {@link DeviceListActivity#EXTRA_DEVICE_ADDRESS} extra.
-     * @param secure Socket Security type - Secure (true) , Insecure (false)
-     */
-    private void connectDevice(Intent data, boolean secure) {
-        // Get the device MAC address
-        String address = data.getExtras()
-                .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-        // Get the BluetoothDevice object
-        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-        // Attempt to connect to the device
-        mChatService.connect(device, secure);
-    }
+//    /**
+//     * Establish connection with other device
+//     *
+//     * @param data   An {@link Intent} with {@link DeviceListActivity#EXTRA_DEVICE_ADDRESS} extra.
+//     * @param secure Socket Security type - Secure (true) , Insecure (false)
+//     */
+//    private void connectDevice(Intent data, boolean secure) {
+//        // Get the device MAC address
+//        String address = data.getExtras()
+//                .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+//        // Get the BluetoothDevice object
+//        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+//        // Attempt to connect to the device
+//        mChatService.connect(device, secure);
+//    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -418,10 +398,32 @@ public class BluetoothChatFragment extends Fragment {
             }
             case R.id.discoverable: {
                 // Ensure this device is discoverable by others
-                ensureDiscoverable();
+                //ensureDiscoverable();
+                startService();
                 return true;
             }
         }
+        return false;
+    }
+
+    public void startService (){
+        tempService = new TempService(getActivity());
+        tempServiceIntent = new Intent(getContext(), tempService.getClass());
+        if (!isMyServiceRunning(tempService.getClass())) {
+            getActivity().startService(tempServiceIntent);
+        }
+
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager)getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                Log.i ("isMyServiceRunning?", true+"");
+                return true;
+            }
+        }
+        Log.i ("isMyServiceRunning?", false+"");
         return false;
     }
 

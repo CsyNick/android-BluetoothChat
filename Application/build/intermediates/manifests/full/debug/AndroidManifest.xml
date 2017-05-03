@@ -52,6 +52,9 @@
         <service
             android:name="com.example.android.bluetoothchat.BluetoothBackgroundService"
             android:enabled="true" />
+        <service
+            android:name="com.example.android.bluetoothchat.TempService"
+            android:enabled="true" />
     </application>
 
 </manifest>
