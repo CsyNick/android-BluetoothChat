@@ -40,12 +40,12 @@
         "source": "/Users/NickChung/.android/build-cache/1d9155c69aae8d05ace0e77cbb0ea8b1633621ab/output/res/drawable-xhdpi-v4/abc_list_divider_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/NickChung/android-BluetoothChat/Application/build/intermediates/res/merged/debug/drawable-xhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "/Users/NickChung/.android/build-cache/1d9155c69aae8d05ace0e77cbb0ea8b1633621ab/output/res/drawable-xhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/NickChung/android-BluetoothChat/Application/build/intermediates/res/merged/debug/drawable-xhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png",
         "source": "/Users/NickChung/.android/build-cache/1d9155c69aae8d05ace0e77cbb0ea8b1633621ab/output/res/drawable-xhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/NickChung/android-BluetoothChat/Application/build/intermediates/res/merged/debug/drawable-xhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "/Users/NickChung/.android/build-cache/1d9155c69aae8d05ace0e77cbb0ea8b1633621ab/output/res/drawable-xhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/NickChung/android-BluetoothChat/Application/build/intermediates/res/merged/debug/drawable-xhdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png",
