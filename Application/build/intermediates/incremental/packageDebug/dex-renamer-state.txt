@@ -1,4 +1,0 @@
-#Thu May 04 10:33:08 CST 2017
-base.0=/Users/NickChung/android-BluetoothChat/Application/build/intermediates/transforms/dex/debug/folders/1000/1f/main
-renamed.0=classes.dex
-file.0=/Users/NickChung/android-BluetoothChat/Application/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
