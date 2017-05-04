@@ -147,15 +147,13 @@ public class BluetoothChatFragment extends Fragment {
         btnOpenYoutube = (Button) view.findViewById(R.id.btnLaunch);
     }
 
+
+
     /**
      * Set up the UI and background operations for chat.
      */
     private void setupChat() {
         Log.d(TAG, "setupChat()");
-
-        // Initialize the array adapter for the conversation thread
-        //mConversationArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.message);
-
 
 
         // Initialize the BluetoothChatService to perform bluetooth connections
@@ -177,6 +175,7 @@ public class BluetoothChatFragment extends Fragment {
                 // Launch the DeviceListActivity to see devices and do scan
                 Intent serverIntent = new Intent(getActivity(), DeviceListActivity.class);
                 startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+               // connectDevice("04:C2:3E:69:AD:F9",true);
             }
         });
     }
@@ -217,20 +216,7 @@ public class BluetoothChatFragment extends Fragment {
         }
     }
 
-    /**
-     * The action listener for the EditText widget, to listen for the return key
-     */
-    private TextView.OnEditorActionListener mWriteListener
-            = new TextView.OnEditorActionListener() {
-        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-            // If the action is a key-up event on the return key, send the message
-            if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_UP) {
-                String message = view.getText().toString();
-                sendMessage(message);
-            }
-            return true;
-        }
-    };
+
 
     /**
      * Updates the status on the action bar.
@@ -370,6 +356,19 @@ public class BluetoothChatFragment extends Fragment {
         // Get the device MAC address
         String address = data.getExtras()
                 .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+        Log.d(TAG,"MAC address =" +address);
+        // Get the BluetoothDevice object
+        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+        // Attempt to connect to the device
+        mChatService.connect(device, secure);
+    }
+
+
+    private void connectDevice(String address, boolean secure) {
+        // Get the device MAC address
+//        String address = data.getExtras()
+//                .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+        Log.d(TAG,"MAC address =" +address);
         // Get the BluetoothDevice object
         BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         // Attempt to connect to the device

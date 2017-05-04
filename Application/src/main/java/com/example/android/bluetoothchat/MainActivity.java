@@ -20,6 +20,8 @@ package com.example.android.bluetoothchat;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom
@@ -43,6 +45,27 @@ public class MainActivity extends FragmentActivity {
             BluetoothChatFragment fragment = new BluetoothChatFragment();
             transaction.replace(R.id.sample_content_fragment, fragment);
             transaction.commit();
+        }
+    }
+
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        int action = event.getAction();
+        int keyCode = event.getKeyCode();
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                if (action == KeyEvent.ACTION_UP) {
+                    Toast.makeText(this,"Do KEYCODE_VOLUME_UP~",Toast.LENGTH_LONG).show();
+                }
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                if (action == KeyEvent.ACTION_DOWN) {
+                    Toast.makeText(this,"Do KEYCODE_VOLUME_DOWN~",Toast.LENGTH_LONG).show();
+                }
+                return true;
+            default:
+                return super.dispatchKeyEvent(event);
         }
     }
 
